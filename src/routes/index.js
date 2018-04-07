@@ -5,7 +5,11 @@ import  initializeDb from '../db';
 import  service  from '../controller/service';
 import  account  from '../controller/account';
 import  server  from '../controller/server';
+import  profile  from '../controller/profile';
 import bodyPaser from "body-parser";
+
+
+
 let router = express();
 
 
@@ -16,9 +20,11 @@ let router = express();
 
 
     //api routes v1 (/v1)
+    router.use('/profile', profile({config, db}));
     router.use('/service', service({config, db}));
     router.use('/account', account({config, db}));
     router.use('/server',  server({config, db}));
+
 
      //comment
 

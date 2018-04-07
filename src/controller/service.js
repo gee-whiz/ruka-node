@@ -1,9 +1,7 @@
 import mongoose  from "mongoose";
 import { Router } from "express";
-import Service from "../model/service"
 import bodyPaser from "body-parser";
-import Review  from "../model/review";
-
+import Service from "../model/service";
 import {authenticate}  from '../middleware/authMiddleware';
 
 
@@ -11,6 +9,7 @@ import {authenticate}  from '../middleware/authMiddleware';
 export default ({config, db}) => {
     let api = Router();
 
+  
 
     //add v1 routers
     api.post('/add', (req,res) => {

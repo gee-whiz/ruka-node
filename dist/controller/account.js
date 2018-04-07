@@ -37,14 +37,16 @@ exports.default = function (_ref) {
   var api = (0, _express.Router)();
 
   api.post('/register', function (req, res) {
+    console.log(req.body.email);
     _account2.default.register(new _account2.default({ username: req.body.email }), req.body.password, function (err, account) {
       if (err) {
         res.send(err);
       }
+
       _passport2.default.authenticate('local', {
         session: false
       })(req, res, function () {
-        res.status(200).send('successfully  created new account');
+        res.json({ message: 'successfully  created new account' });
       });
     });
   });

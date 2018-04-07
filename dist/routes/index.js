@@ -32,6 +32,14 @@ var _server = require('../controller/server');
 
 var _server2 = _interopRequireDefault(_server);
 
+var _profile = require('../controller/profile');
+
+var _profile2 = _interopRequireDefault(_profile);
+
+var _bodyParser = require('body-parser');
+
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = (0, _express2.default)();
@@ -42,9 +50,12 @@ var router = (0, _express2.default)();
   router.use((0, _middleware2.default)({ config: _config2.default, db: db }));
 
   //api routes v1 (/v1)
+  router.use('/profile', (0, _profile2.default)({ config: _config2.default, db: db }));
   router.use('/service', (0, _service2.default)({ config: _config2.default, db: db }));
   router.use('/account', (0, _account2.default)({ config: _config2.default, db: db }));
   router.use('/server', (0, _server2.default)({ config: _config2.default, db: db }));
+
+  //comment
 });
 
 exports.default = router;

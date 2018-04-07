@@ -10,17 +10,13 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 var _express = require("express");
 
-var _service = require("../model/service");
-
-var _service2 = _interopRequireDefault(_service);
-
 var _bodyParser = require("body-parser");
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _review = require("../model/review");
+var _user = require("../model/user");
 
-var _review2 = _interopRequireDefault(_review);
+var _user2 = _interopRequireDefault(_user);
 
 var _authMiddleware = require("../middleware/authMiddleware");
 
@@ -33,8 +29,8 @@ exports.default = function (_ref) {
   var api = (0, _express.Router)();
 
   //add v1 routers
-  api.post('/add', _authMiddleware.authenticate, function (req, res) {
-    var newService = new _service2.default();
+  api.post('/add', function (req, res) {
+    var newService = new Service();
     newService.name = req.body.name;
     newService.price = req.body.price;
     newService.address = req.body.address;
@@ -54,7 +50,7 @@ exports.default = function (_ref) {
 
   //get all services
   api.get('/', function (req, res) {
-    _service2.default.find({}, function (err, services) {
+    Service.find({}, function (err, services) {
       if (err) {
         res.send(err);
       }
@@ -64,7 +60,7 @@ exports.default = function (_ref) {
 
   //read one service
   api.get('/:id', function (req, res) {
-    _service2.default.findById(req.params.id, function (err, service) {
+    Service.findById(req.params.id, function (err, service) {
       if (err) {
         res.send(err);
       }
@@ -74,7 +70,7 @@ exports.default = function (_ref) {
 
   // update service
   api.put('/:id', function (req, res) {
-    _service2.default.findById(req.params.id, function (err, service) {
+    Service.findById(req.params.id, function (err, service) {
       if (err) {
         res.send(err);
       }
@@ -98,7 +94,7 @@ exports.default = function (_ref) {
 
   //delete
   api.delete('/:id', function (req, res) {
-    _service2.default.remove({
+    Service.remove({
       _id: req.params.id
     }, function (err, service) {
       if (err) {
@@ -111,11 +107,11 @@ exports.default = function (_ref) {
   //add review for a specific service id
 
   api.post('/reviews/add/:id', function (req, res) {
-    _service2.default.findById(req.params.id, function (err, service) {
+    Service.findById(req.params.id, function (err, service) {
       if (err) {
         res.send(err);
       }
-      var newReview = new _review2.default();
+      var newReview = new Review();
       newReview.title = req.body.title;
       newReview.text = req.body.text;
       newReview.service = service._id;
@@ -137,7 +133,7 @@ exports.default = function (_ref) {
 
   //get  reviews by service id
   api.get('/reviews/:id', function (req, res) {
-    _review2.default.find({ service: req.params.id }, function (err, reviews) {
+    Review.find({ service: req.params.id }, function (err, reviews) {
       if (err) {
         res.send(err);
       }
