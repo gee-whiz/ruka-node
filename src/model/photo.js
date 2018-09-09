@@ -3,19 +3,15 @@ import Service from "./service"
 
 
 let Schema = mongoose.Schema;
-let ReviewSchema = new Schema({
-    username: {
+let PhotosSchema = new Schema({
+    image_uri: {
          type: String,
          required: true
      },
-     title: String,
-     text: String,
-     rattings: Number,
-     time_stamp: String,
      service: {
        type: Schema.Types.ObjectId, ref: 'service',
        required: true
      }
 
 });
-module.exports = mongoose.model('Review', ReviewSchema);
+module.exports = mongoose.model('Photo', PhotosSchema);

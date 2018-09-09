@@ -41,7 +41,7 @@ app.use(bodyParser.json({
   passport.deserializeUser(Account.deserializeUser());
 
 // api routes v1
-app.use('/v1', routes);
+app.use('/v1.1', routes);
 app.server.listen(config.port);
 console.log(`started port ${app.server.address().port}`);
 

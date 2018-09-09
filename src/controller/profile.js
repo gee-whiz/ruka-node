@@ -36,6 +36,7 @@ export default ({config, db}) => {
 
   // 'v1/user/byEmail/:email'
   api.get('/byEmail/:email', authenticate, (req, res) => {
+
     User.findOne({ 'email': req.params.email })
       .exec((err, userData) => {
         if (err) {
