@@ -1,2 +1,2 @@
-# ruka-api
-ruka node js api
+# BeautyCarty-api
+BeautyCarty version 1
