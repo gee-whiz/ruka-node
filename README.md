@@ -1,2 +1,2 @@
-# BeautyCarty-api
-BeautyCarty version 1
+# BeautyCart-api
+BeautyCart version 1
